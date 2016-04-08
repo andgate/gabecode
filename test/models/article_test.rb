@@ -19,7 +19,7 @@ class ArticleTest < ActiveSupport::TestCase
     assert_not @article.valid?
   end
   
-  test "title should not be exeed 140 characters" do
+  test "title should not exceed 140 characters" do
     @article.title = "a" * 141
     assert_not @article.valid?
   end
@@ -32,5 +32,9 @@ class ArticleTest < ActiveSupport::TestCase
   test "text should not be blank" do
     @article.text = ""
     assert_not @article.valid?
+  end
+  
+  test "order should be most recent first" do
+    assert_equal articles(:most_recent), Article.first
   end
 end
