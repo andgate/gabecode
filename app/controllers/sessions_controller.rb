@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   def create
     if authenticate? params[:session][:password]
       log_in
+      flash[:success] = "Logged in successfully!"
       redirect_to root_path
     else
       flash.now[:danger] = 'Invalid password'

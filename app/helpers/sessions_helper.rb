@@ -6,16 +6,16 @@ module SessionsHelper
     
     # Logs in the given user.
     def log_in
-        session[:active] = true
+        session[:logged_in] = true
     end
     
     def log_out
-        session.delete(:active)
+        session.delete(:logged_in)
     end
     
     # Returns true if the user is logged in, false otherwise.
     def logged_in?
-        session[:active]
+        session[:logged_in]
     end
     
     def redirect_back_or(default)
