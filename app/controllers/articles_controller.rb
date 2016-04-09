@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+    before_action :logged_in_user, only: [:new, :create, :destroy]
+    
     def new
     end
     
@@ -15,6 +17,14 @@ class ArticlesController < ApplicationController
         
         @article.save
         redirect_to @article
+    end
+    
+    def destroy
+        @article = Article.find(params[:id])
+        
+        @article.destroy
+        flash[:success] = "Article deleted"
+        redirect_to request.referrer || root_url
     end
     
     private

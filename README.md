@@ -15,3 +15,5 @@ ENV['PASS_HASH'] = BCrypt::Engine.hash_secret(password, ENV['PASS_SALT'])
 
 The hash and salt can then be put into the deployment platform's under the
 environment variables 'PASS_SALT' and 'PASS_HASH'
+
+The default password for development is "password".

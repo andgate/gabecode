@@ -38,4 +38,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  # Setup password for development
+  password = "password"
+  ENV['PASS_SALT'] = BCrypt::Engine.generate_salt
+  ENV['PASS_HASH'] = BCrypt::Engine.hash_secret(password, ENV['PASS_SALT']) 
 end
