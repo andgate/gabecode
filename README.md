@@ -2,7 +2,7 @@
 
 This is the source code for Gabe's blog.
 
-## How to setup password
+## Password Setup
 This blog is a single user platform.
 The password has to be stored in the environment.
 The following can be used in rails console to generate a hash and salt.
