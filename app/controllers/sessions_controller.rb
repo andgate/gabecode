@@ -3,8 +3,9 @@ class SessionsController < ApplicationController
   end
   
   def create
-    if false # password is valid
+    if authenticate?(params[:session][:password])
       # create a new session
+      redirect_to root_path
     else
       # spit out error message
       render 'new'
