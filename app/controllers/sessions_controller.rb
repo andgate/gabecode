@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    if # password is valid
+    if false # password is valid
       # create a new session
     else
       # spit out error message
