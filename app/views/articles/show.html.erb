@@ -3,7 +3,7 @@
         <h2><%= link_to @article.title, @article %></h2> posted on <%= @article.created_at %>
     </div>
     <div class="panel-body">
-        <%= @article.text %>
+        <%= markdown(@article.text) %>
     </div>
 </div>
 

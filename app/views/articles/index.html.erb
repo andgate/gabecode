@@ -13,7 +13,7 @@
             posted <%= time_ago_in_words(article.created_at) %> ago.
         </div>
         <div class="panel-body">
-            <%= article.text %>
+            <%= markdown(article.text) %>
         </div>
     </div>
     <% if logged_in? %>

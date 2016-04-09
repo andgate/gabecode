@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
+gem 'redcarpet'
+gem 'coderay'
 gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
