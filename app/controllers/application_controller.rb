@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :force_ssl_for_user
+  force_ssl if: logged_in?, unless: Rails.env.development?
   
   include SessionsHelper
   
@@ -28,7 +28,10 @@ class ApplicationController < ActionController::Base
             flash.keep
             redirect_to redirect_options and return
           else
-            true
+            redirect_options = {:protocol => 'http://', :status => :moved_permanently}
+            redirect_options.merge!(:host => host) if host
+            flash.keep
+            redirect_to redirect_options and return
           end
         end
 end
