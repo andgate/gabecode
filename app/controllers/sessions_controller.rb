@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   include SessionsHelper
-  before_filter :force_ssl_for_user, only: [:new, :create]
+  before_filter :force_ssl, only: [:new, :create]
   
   def new
   end
