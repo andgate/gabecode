@@ -2,8 +2,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2><%= link_to @article.title, article_path(@article, :protocol => 'http') %></h2>
-        <%= @article.created_at.strftime("%B %-d, %Y") %>
+        <h2><%= link_to @article.title, @article %></h2> posted on <%= @article.created_at %>
     </div>
     
     <div class="panel-body">

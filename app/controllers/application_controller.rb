@@ -17,4 +17,10 @@ class ApplicationController < ActionController::Base
         def ssl_configured_for_user?
           !Rails.env.development? && logged_in?
         end
+        
+        def force_http(options = {})
+          if request.ssl? && Rails.env.production?
+            redirect_to :protocol => 'http://', :status => :moved_permanently
+          end
+        end
 end
