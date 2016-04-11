@@ -32,15 +32,5 @@ module ApplicationHelper
         @markdown.render(content).html_safe
     end
     
-    def force_ssl(options = {})
-      host = options.delete(:host)
-      unless request.ssl? or Rails.env.development?
-        redirect_options = {:protocol => 'https://', :status => :moved_permanently}
-        redirect_options.merge!(:host => host) if host
-        flash.keep
-        redirect_to redirect_options and return
-      else
-        true
-      end
-    end
+    
 end

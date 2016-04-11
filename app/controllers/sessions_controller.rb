@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   include SessionsHelper
-  before_filter :force_ssl, only: [:new, :create]
+  force_ssl if: :ssl_configured?, only: [:new, :create]
   
   def new
   end
@@ -20,4 +20,9 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+  
+  private 
+    def ssl_configured_for_user?
+      !Rails.env.development?
+    end
 end

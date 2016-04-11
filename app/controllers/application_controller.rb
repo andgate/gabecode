@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  force_ssl if: logged_in?, unless: Rails.env.development?
+  force_ssl if: :ssl_configured_for_user?
   
   include SessionsHelper
   
@@ -16,22 +14,7 @@ class ApplicationController < ActionController::Base
           end
         end
         
-        def force_ssl_for_user
-          force_ssl if logged_in?
-        end
-        
-        def force_ssl(options = {})
-          host = options.delete(:host)
-          unless request.ssl? or Rails.env.development?
-            redirect_options = {:protocol => 'https://', :status => :moved_permanently}
-            redirect_options.merge!(:host => host) if host
-            flash.keep
-            redirect_to redirect_options and return
-          else
-            redirect_options = {:protocol => 'http://', :status => :moved_permanently}
-            redirect_options.merge!(:host => host) if host
-            flash.keep
-            redirect_to redirect_options and return
-          end
+        def ssl_configured_for_user?
+          !Rails.env.development? && logged_in?
         end
 end
