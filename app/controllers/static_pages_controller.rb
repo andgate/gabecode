@@ -1,6 +1,4 @@
 class StaticPagesController < ApplicationController
-  before_filter :force_http
-  
   def home
   end
 
