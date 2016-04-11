@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
   
   private 
-    def ssl_configured_for_user?
+    def ssl_configured?
       !Rails.env.development?
     end
 end
