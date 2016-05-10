@@ -1,20 +1,24 @@
 <% provide(:title, "Blog") %>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2><%= link_to @article.title, @article %></h2> posted on <%= @article.created_at %>
-    </div>
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2><%= link_to @article.title, @article %></h2> posted on <%= @article.created_at %>
+        </div>
+        
+        <div class="panel-body">
+            <%= markdown(@article.text) %>
+        </div>
     
-    <div class="panel-body">
-        <%= markdown(@article.text) %>
-    </div>
-
-    <div class="panel-footer">
-        <%= link_to 'Back', articles_path, class: "btn btn-primary" %>
-        <%= link_to 'Delete', @article, method: :delete,
-                              data: { confirm: "You sure?" },
-                              class: "btn btn-primary" %>
-        <%= link_to 'Edit', edit_article_path(@article),
-                            class: "btn btn-primary" %>
+        <% if logged_in? %>
+            <div class="panel-footer">
+                <%= link_to 'Back', articles_path, class: "btn btn-primary" %>
+                <%= link_to 'Delete', @article, method: :delete,
+                                      data: { confirm: "You sure?" },
+                                      class: "btn btn-primary" %>
+                <%= link_to 'Edit', edit_article_path(@article),
+                                    class: "btn btn-primary" %>
+            </div>
+        <% end %>
     </div>
 </div>
